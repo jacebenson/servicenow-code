@@ -4,7 +4,7 @@
         <active>true</active>
         <api_name>x_8821_code.Utils</api_name>
         <client_callable>false</client_callable>
-        <description>var t = new x_8821_code_report.Utils();&amp;#13;&#13;
+        <description>var t = new x_8821_code.Utils();&#13;
 try{&#13;
   gs.info(JSON.stringify(t.run(),'','  '));&#13;
 }catch(e){&#13;
@@ -384,13 +384,13 @@ UI Policies
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-03-28 07:31:58</sys_created_on>
         <sys_id>41859450db2833007d159235ca96191d</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Utils</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sys_script_include_41859450db2833007d159235ca96191d</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2019-03-28 07:50:38</sys_updated_on>
+        <sys_updated_on>2019-03-28 07:53:26</sys_updated_on>
     </sys_script_include>
 </record_update>

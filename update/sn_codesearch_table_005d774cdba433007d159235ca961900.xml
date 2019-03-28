@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sn_codesearch_table">
+    <sn_codesearch_table action="INSERT_OR_UPDATE">
+        <additional_filter table="bsm_action">active=true^EQ<item endquery="false" field="active" goto="false" newquery="false" operator="=" or="false" value="true"/>
+            <item endquery="true" field="" goto="false" newquery="false" operator="=" or="false" value=""/>
+        </additional_filter>
+        <search_fields>name, script</search_fields>
+        <search_group display_value="x_8821_code.default">b15c3f48dba433007d159235ca9619c5</search_group>
+        <sys_class_name>sn_codesearch_table</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-03-28 05:46:21</sys_created_on>
+        <sys_id>005d774cdba433007d159235ca961900</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>bsm_action</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sn_codesearch_table_005d774cdba433007d159235ca961900</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-03-28 05:46:21</sys_updated_on>
+        <table>bsm_action</table>
+    </sn_codesearch_table>
+</record_update>

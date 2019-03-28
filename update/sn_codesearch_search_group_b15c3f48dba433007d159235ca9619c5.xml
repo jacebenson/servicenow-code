@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sn_codesearch_search_group">
+    <sn_codesearch_search_group action="INSERT_OR_UPDATE">
+        <description/>
+        <extended_matching>false</extended_matching>
+        <name>x_8821_code.default</name>
+        <suffix>default</suffix>
+        <sys_class_name>sn_codesearch_search_group</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-03-28 05:41:59</sys_created_on>
+        <sys_id>b15c3f48dba433007d159235ca9619c5</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_8821_code.default</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sn_codesearch_search_group_b15c3f48dba433007d159235ca9619c5</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-03-28 05:41:59</sys_updated_on>
+    </sn_codesearch_search_group>
+</record_update>

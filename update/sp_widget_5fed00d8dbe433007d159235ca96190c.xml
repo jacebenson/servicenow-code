@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <category>custom</category>
+        <client_script><![CDATA[function($scope, $http, $location, $window) {
+	var c = this;
+	//$scope.tables = data.tables;
+	$scope.loading = false;
+	$scope.search = "";
+	$scope.hits = 0;
+	$scope.table = "All Tables"
+	$scope.table_name = ""
+	$scope.setUrl = function(type) {
+		console.log(type);
+		var updateUrl = "";
+		if (type === "sysid") {
+			updateUrl = "/code+?s+=" + $scope.term;
+		} else if (type === "code") {
+			updateUrl = "/code"+"?q"+"=" + $scope.term;
+		} else {
+			updateUrl = "/code"+"?q"+"=" + $scope.term + "&t=" + type;
+		}
+		$window.history.pushState("", $scope.term, updateUrl);
+	}
+	$scope.setURLWithTable = function(table){
+		console.log('...');
+		$scope.table_name = table;
+		$scope.setUrl('code');
+	}
+	$scope.codeSearch = function() {
+		$scope.search = "code";
+		$scope.loading = true;
+		if ($scope.term) {
+			$scope.hits = 0;
+			var searchGroup = "x_8821_code.default";
+			var endpoint = "/api/sn_codesearch/code_search/search?";
+			endpoint += "search_group="+searchGroup+"&";
+			endpoint += "term="+$scope.term+"&";
+			endpoint += "search_all_scopes=true";
+			if($scope.table_name != ""){
+				endpoint += "&table=" + $scope.table_name
+			}
+			$http.get(endpoint).success(function(response) {
+				$scope.loading = false;
+				$scope.results = response.result;
+				console.log(response.result);
+				if($scope.table_name === ""){
+					response.result.map(function(table){
+						table.hits = table.hits.map(function(hit){
+							$scope.hits++;
+							//new
+							try{
+								if(hit.className === "sys_variable_value"){
+									var wfEndpoint = "";
+									wfEndpoint += "/api/now/table/sys_variable_value/" + hit.sysId;
+									wfEndpoint += "?sysparm_display_value=true&sysparm_fields=document_key"
+									$http.get(wfEndpoint).success(function(wfResponse){
+										try{
+										console.log({sys_variable_value:wfEndpoint,response: wfResponse.result.document_key})
+										
+										if(typeof wfResponse != ""){
+											var activityEndpoint = wfResponse.result.document_key.link;
+											activityEndpoint += "?sysparm_display_value=true&sysparm_fields=workflow_version,workflow_version.published";
+											$http.get(activityEndpoint).success(function(activityResponse){
+												console.log({wfEndpoint: wfEndpoint,activityResponse:activityResponse});
+												if(activityResponse[0] != '<'){
+													if(activityResponse.result['workflow_version.published'] === "true"){//workflow_version.active
+														hit.name = '\"' + wfResponse.result.document_key.display_value + '\" of ';
+														hit.name += activityResponse.result.workflow_version.display_value;
+														console.log(hit.name + " - "+ activityResponse.result['workflow_version.published']);
+													}else{
+														hit.name = 'inactive';
+													}
+													return hit;
+												}
+											});
+										}
+										}catch(e){console.log(e);}
+									});
+								}
+							}catch(err){
+								console.log(hit, err);
+							}
+							return hit;
+							//end new
+						});
+					})	
+				} else {
+					if(response.result.hits){
+						response.result.table = {};
+						response.result.table.recordType = $scope.table_name;
+						response.result.table.tableLabel = $scope.table_name;
+						response.result.table.hits = response.result.hits;
+						response.result.hits.map(function(hit){
+							$scope.hits++;
+						});
+					}
+				}
+				$scope.results = response.result;
+			});
+		}
+	}
+	$scope.sysIdSearch = function() {
+		$scope.search = "sysid";
+		$scope.loading = true;
+		if ($scope.term) {
+			$scope.hits = 0;
+			var searchGroup = "x_8821_code.default";
+			var endpoint = "/api/x_8821_code/query?";
+			endpoint += "sysid=" + $scope.term;//c661e7650f211300fc69cdbce1050e02
+			$http.get(endpoint).success(function(response) {
+				$scope.loading = false;
+				$scope.results = response.result;
+				//console.log($scope.results);
+				$scope.results.map(function(hits){
+					$scope.hits++;
+				})
+			});
+		}
+	}
+	$scope.setTable = function(table){
+		if(table.name == ""){
+			$scope.table = "All Tables";
+			$scope.table_name = ""
+		} else {
+			$scope.table = table.calculated;
+			$scope.table_name = table.name;
+		}
+	};
+	// Update to work with URL parameters
+	if($location.search().q){
+		$scope.term = $location.search().q;
+		if($scope.term.length>0){
+			if($location.search().t){
+				$scope.table_name = $location.search().t;
+				$scope.table = $location.search().t
+			}
+			$scope.codeSearch();
+		}
+	}
+	if($location.search().s){
+		$scope.term = $location.search().s;
+		if($scope.term.length>0){
+			$scope.sysIdSearch();
+		}
+	}
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>#spinner{
+  font-size:10em;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>code-search</id>
+        <internal>false</internal>
+        <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
+        <name>code-search</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.tables = [{
+		name: '',
+		display: '',
+		calculated: 'All Tables'
+	}];
+	var tables = new GlideRecord('sn_codesearch_table');
+	tables.addQuery('search_group','9a44f352d7120200b6bddb0c82520376');
+	tables.orderBy('table');
+	tables.query();
+	while(tables.next()){
+		var tablesObj = {};
+		tablesObj.name = tables.getValue('table');
+		var documentation = new GlideRecord('sys_documentation');
+		documentation.addQuery('name', tables.getValue('table'));
+		documentation.addQuery('element','')
+		documentation.addQuery('language','en');
+		documentation.setLimit(1);
+		documentation.query();
+		if(documentation.next()){
+			tablesObj.display = documentation.getValue('label');
+			tablesObj.calculated = documentation.getValue('label') + ' ['+tables.getValue('table')+']';
+		}
+		data.tables.push(tablesObj)
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-03-28 06:58:01</sys_created_on>
+        <sys_id>5fed00d8dbe433007d159235ca96190c</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>code-search</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sp_widget_5fed00d8dbe433007d159235ca96190c</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-03-28 07:44:26</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">${Code Search}</h3>
+    </div>
+    <div class="panel-body col-12">
+      <form class="form-horizontal">
+        <fieldset>
+          <!-- Form Name -->
+          <!--<legend>Form Name</legend>-->
+          <div class="row">
+            <div class="col-sm-8">
+              <!-- Search input-->
+              <div class="form-group">
+                <div class="col-md-12">
+                  <div class="input-group">
+                    <input id="searchinput" name="searchinput" class="form-control" placeholder="GlideDateTime" type="text"
+                           ng-model="term">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span data-value="" id="table" ng-bind="table"></span>
+                        <span class="caret"></span>
+                      </button>
+                      <ul ng-if="data.tables.length>0" class="dropdown-menu pull-right">
+                        <li ng-repeat="table in data.tables">
+                          <button class="btn btn-link" ng-click="setUrl(table.name)">
+                              {{table.calculated}}
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <!--<input id=\"searchinput\" 
+                         name=\"searchinput\" 
+                         placeholder=\"GlideDateTime\" 
+                         class=\"form-control input-md\" 
+                         type=\"search\"
+                         ng-model=\"term\"
+                         >-->
+                  <p class="help-block">
+                    Enter code snippet or sysid and search with appropiate button.  If you search for sysid you will initially get a bunch of "scope" messages, this is expected.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- Button (Double) -->
+              <div class="form-group">
+                <!--<label class=\"col-md-4 control-label\" for=\"button1id\">Double Button</label>-->
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-8">
+                  <button id="button1id" 
+                          name="button1id" 
+                          class="btn btn-success"
+                          ng-click="setUrl('code')"
+                          ><i class="glyphicon glyphicon-search\" aria-hidden="true"></i> Code</button>
+                  <button id="button2id" 
+                          name="button2id" 
+                          class="btn btn-danger"
+                          ng-click="setUrl('sysid')"
+                          ><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Sysid</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+  
+    </div>
+  </div>
+  <div class="panel panel-default" ng-if="loading">
+    <div class="text-center">
+      <h1 ng-if="search==='code'">
+        Searching code...  
+      </h1>
+      <h1 ng-if="search==='sysid'">
+        Searching for record...  
+      </h1>
+      <div class="fa fa-spinner fa-spin" id="spinner"></div>
+    </div>
+  </div>
+  <div class="panel panel-default" ng-if="results && !loading">
+    <h1 class="text-center">
+      <div ng-if="hits>0 && search === 'code'">
+        {{hits}} Code Matches
+      </div>
+      <div ng-if="hits>0 && search === 'sysid'">
+        Found
+      </div>
+      <div ng-if="hits === 0">
+        No Matches Found
+      </div>
+    </h1>
+    <div class="panel-body">
+      <div ng-if="search==='sysid'" ng-repeat="hits in results">
+        <div class="row container" id="{{hits.sysid}}">
+          <p>
+            <a href="{{hits.url}}">{{hits.displayValue}} on {{hits.table}}.</a>
+          </p>
+        </div>
+      </div>
+      <div ng-if="search!=='sysid'" ng-repeat="table in results">
+        <div class="row container" ng-if="table.hits.length>0">
+          <p>
+            <a href="#{{table.recordType}}">{{table.recordType}} has {{table.hits.length}} matching records.</a>
+          </p>
+        </div>
+      </div>
+      <div ng-repeat="table in results">
+        <div class="row" id="{{table.recordType}}" ng-if="table.hits.length>0">
+          <h1 class="text-center">
+            {{table.tableLabel}}
+          </h1>
+        </div>
+        <div class="row" ng-if="table.hits.length>0">
+          <div class="row container" ng-repeat="hit in table.hits">
+            <div class="col-sm-2">
+              <a ng-href="{{hit.className}}.do?sys_id={{hit.sysId}}" target="_blank">{{hit.name}}</a>
+            </div>
+            <div class="col-sm-10">
+              <div ng-repeat="match in hit.matches"> 
+                <pre><code class="javascript"><span ng-repeat="context in match.lineMatches"><span>Line {{context.line}}</span>: <span>{{context.context}}</span><br/></span></code></pre> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>]]></template>
+    </sp_widget>
+</record_update>

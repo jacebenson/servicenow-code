@@ -3,11 +3,13 @@
 This is a scoped application for Service-now to allow easier searching all code sources.
 
 [![](screenshot.png)](https://github.com/jacebenson/servicenow-codesearch/blob/docs/demo.mp4)
+![](screenshot-2.png)
 
 ## Features
 
 - Table of contents of results
 - Inline code that is found
+- Code Checker
 
 ## Setup (Studio)
 
@@ -29,3 +31,4 @@ After you import this you can start to use it by in the following ways;
 
 - Navigating to `/code` on your instance and typing in your term
 - Navigating to `/code?q=getMyApprovals` on your instance and waiting for it's response
+- You may want to disable the code checker, if so, just set the property `x_8821_code.allow.code.inspection` to false

@@ -31,4 +31,4 @@ After you import this you can start to use it by in the following ways;
 
 - Navigating to `/code` on your instance and typing in your term
 - Navigating to `/code?q=getMyApprovals` on your instance and waiting for it's response
-- You may want to disable the code checker, if so, just set the property `x_8821_code.allow.code.inspection` to false
+- You may want to enable the code checker, if so, just set the property `x_8821_code.allow.code.inspection` to `true`

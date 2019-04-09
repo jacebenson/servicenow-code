@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
         <category>custom</category>
-        <client_script><![CDATA[function($scope, $http, $location, $window) {
+        <client_script><![CDATA[function($scope, $http, $location, $window, $document) {
 	var c = this;
 	//$scope.tables = data.tables;
 	$scope.loading = false;
@@ -153,7 +153,7 @@
         <description/>
         <docs/>
         <field_list/>
-        <has_preview>false</has_preview>
+        <has_preview>true</has_preview>
         <id>code-search</id>
         <internal>false</internal>
         <link><![CDATA[function link(scope, element, attrs, controller) {  }]]></link>
@@ -192,14 +192,14 @@
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-03-28 06:58:01</sys_created_on>
         <sys_id>5fed00d8dbe433007d159235ca96190c</sys_id>
-        <sys_mod_count>4</sys_mod_count>
+        <sys_mod_count>32</sys_mod_count>
         <sys_name>code-search</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sp_widget_5fed00d8dbe433007d159235ca96190c</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2019-03-28 07:44:26</sys_updated_on>
+        <sys_updated_on>2019-04-09 03:01:53</sys_updated_on>
         <template><![CDATA[<div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">${Code Search}</h3>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
-        <access>package_private</access>
+        <access>public</access>
         <active>true</active>
         <api_name>x_8821_code.Utils</api_name>
         <client_callable>false</client_callable>
@@ -8,7 +8,7 @@
 try{&#13;
   gs.info(JSON.stringify(t.run(),'','  '));&#13;
 }catch(e){&#13;
-  gs.info(JSON.stringify(e))&#13;
+  gs.info(JSON.stringify(e));&#13;
 }</description>
         <name>Utils</name>
         <script><![CDATA[var Utils = Class.create();
@@ -107,14 +107,14 @@ Utils.prototype = {
 		return returnObj;		
 	},
 	instanceCreateDate: (function(){
-		//var properties = new GlideRecord('sys_properties');
-		//if(properties.get('name','instance_name')){
-		//	return new GlideDateTime(properties.sys_created_on);
-		//} else {
-		var gdt = new GlideDateTime();
-		gdt.addYearsLocalTime(-2);
-		return gdt;
-		//}
+		var properties = new GlideRecord('sys_properties');
+		if(properties.get('name','instance_name')){
+			return new GlideDateTime(properties.sys_created_on);
+		} else {
+		  var gdt = new GlideDateTime();
+		  gdt.addYearsLocalTime(-2);
+		  return gdt;
+		}
 	})(),
 	instance:(function(){
 		return 'https://' + gs.getProperty('instance_name') + '.service-now.com/nav_to.do?uri=';
@@ -243,6 +243,9 @@ UI Policies
 		- [] Check if script/code does not make use of foreign tables without GlideRecordSecure
 		- [] search code for the use of getResponse() as its a soap method that should be used.
 		*/
+		if(arguments.length === 1){
+			options = arguments[0];
+		}
 		var returnArr = [];
 		var tests = this.serverTests.concat([{
 			regex: /^(function)((.*)\n)+}$/gm,
@@ -250,8 +253,12 @@ UI Policies
 			expect: true
 		}]);
 		var br = new GlideRecord('sys_script');
-		br.addQuery('active','true');
-		br.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		if(options){
+			br.addQuery('sys_id', options);
+		} else {
+			br.addQuery('active','true');
+			br.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		br.query();
 		while(br.next()){
 			var script = br.getValue('script') || "";
@@ -293,10 +300,17 @@ UI Policies
 		- [] Check if script/code does not make use of foreign tables without GlideRecordSecure
 		- [] search code for the use of getResponse() as its a soap method that should be used.
 		*/
+		if(arguments.length === 1){
+			options = arguments[0];
+		}
 		var returnArr = [];
 		var si = new GlideRecord('sys_script_include');
-		si.addQuery('active','true');
-		si.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		if(options){
+			si.addQuery('sys_id', options);
+		} else {
+			si.addQuery('active','true');
+			si.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		si.query();
 		while(si.next()){
 			var script = si.getValue('script') || "";
@@ -321,10 +335,17 @@ UI Policies
 	},
 	_getUIPoliciesScripts: function(){
 		var returnArr = [];
+		if(arguments.length === 1){
+			options = arguments[0];
+		}
 		var up = new GlideRecord('sys_ui_policy');
-		up.addQuery('active','true');
-		up.addQuery('run_scripts','true');
-		up.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		if(options){
+			up.addQuery('sys_id', options);
+		} else {
+			up.addQuery('active','true');
+			up.addQuery('run_scripts','true');
+			up.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		up.query();
 		while(up.next()){
 			var script_true = up.getValue('script_true') || "";
@@ -351,10 +372,16 @@ UI Policies
 	},
 	_getClientScripts: function(){
 		var returnArr = [];
+		if(arguments.length === 1){
+			options = arguments[0];
+		}
 		var cs = new GlideRecord('sys_script_client');
-		cs.query();
-		cs.addQuery('active','true');
-		cs.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		if(options){
+			cs.addQuery('sys_id', options);
+		} else {
+			cs.addQuery('active','true');
+			cs.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		cs.query();
 		while (cs.next()) {   // iterate through records
 			var script = cs.getValue('script') || "";
@@ -384,13 +411,13 @@ UI Policies
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-03-28 07:31:58</sys_created_on>
         <sys_id>41859450db2833007d159235ca96191d</sys_id>
-        <sys_mod_count>3</sys_mod_count>
+        <sys_mod_count>14</sys_mod_count>
         <sys_name>Utils</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sys_script_include_41859450db2833007d159235ca96191d</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2019-03-28 07:53:26</sys_updated_on>
+        <sys_updated_on>2019-04-09 01:59:50</sys_updated_on>
     </sys_script_include>
 </record_update>

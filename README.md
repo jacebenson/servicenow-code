@@ -2,7 +2,7 @@
 
 This is a scoped application for Service-now to allow easier searching all code sources.
 
-[![](screenshot.png)](https://github.com/jacebenson/servicenow-codesearch/blob/docs/demo.mp4)
+[![](screenshot.png)](https://github.com/jacebenson/servicenow-code/blob/docs/demo.mp4)
 ![](screenshot-2.png)
 
 ## Features
@@ -15,7 +15,7 @@ This is a scoped application for Service-now to allow easier searching all code 
 
 1. Open Studio on your environment
 1. Import from source
-1. Paste in the following url: `https://github.com/jacebenson/servicenow-codesearch.git`
+1. Paste in the following url: `https://github.com/jacebenson/servicenow-code.git`
 
 ### Setup (Update set)
 

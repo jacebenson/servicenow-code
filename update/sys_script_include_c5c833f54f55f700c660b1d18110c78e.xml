@@ -3,13 +3,14 @@
         <access>public</access>
         <active>true</active>
         <api_name>x_8821_code.Analysis</api_name>
+        <caller_access/>
         <client_callable>false</client_callable>
         <description>var t = new x_8821_code.Analysis();&#13;
 try{&#13;
   gs.info(JSON.stringify(t.run(),'','  '));&#13;
 }catch(e){&#13;
   gs.info(JSON.stringify(e));&#13;
-}</description>
+}//</description>
         <name>Analysis</name>
         <script><![CDATA[var Analysis = Class.create();
 Analysis.prototype = {
@@ -72,13 +73,13 @@ sys_ui_action,
 	},
 	instanceCreateDate: (function(){
 		var properties = new GlideRecord('sys_properties');
-		//if(properties.get('name','instance_name')){
-		//	return new GlideDateTime(properties.sys_created_on);
-		//} else {
-		var gdt = new GlideDateTime();
-		gdt.addYearsLocalTime(-2);
-		return gdt;
-		//}
+		if(properties.get('name','instance_name')){
+			return new GlideDateTime(properties.sys_created_on);
+		} else {
+			var gdt = new GlideDateTime();
+			gdt.addYearsLocalTime(-2);
+			return gdt;
+		}
 	})(),
 	instance:(function(){
 		return 'https://' + gs.getProperty('instance_name') + '.service-now.com/nav_to.do?uri=';
@@ -98,19 +99,19 @@ sys_ui_action,
 			error: "Do not use jQuery ($j) as it's not supported on SP or Mobile",
 			expect: false
 		},{
-			regex: /(\s)\jQuery(\.|\()/gm,
+			regex: /(\s)jQuery(\.|\()/gm,
 			error: "Do not use jQuery as it's not supported on SP or Mobile",
 			expect: false
 		},{
-			regex: /(\s)\top(\.|\[)/gm,
+			regex: /(\s)top(\.|\[)/gm,
 			error: "Do not use top as it's not supported on SP or Mobile",
 			expect: false
 		},{
-			regex: /(\s)\window(\.|\[)/gm,
+			regex: /(\s)window(\.|\[)/gm,
 			error: "Do not use window as it's not supported on SP or Mobile",
 			expect: false
 		},{
-			regex: /(\s)\document(\.|\[)/gm,
+			regex: /(\s)document(\.|\[)/gm,
 			error: "Do not use document as it's not supported on SP or Mobile",
 			expect: false
 		},{
@@ -124,6 +125,14 @@ sys_ui_action,
 		},{
 			regex: /\.getReference\(\)/gm,
 			error: "getReference should have a callback",
+			expect: false
+		},{
+			regex: /control./gm,
+			error: "Do not use control as it's not supported on SP or Mobile",
+			expect: false
+		},{
+			regex: /\.getXMLWait/gm,
+			error: "Do not use getXMLWait as it's not supported on SP or Mobile",
 			expect: false
 		}
 	],
@@ -372,13 +381,13 @@ sys_ui_action,
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-05-09 22:44:13</sys_created_on>
         <sys_id>c5c833f54f55f700c660b1d18110c78e</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Analysis</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sys_script_include_c5c833f54f55f700c660b1d18110c78e</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2019-05-09 23:13:36</sys_updated_on>
+        <sys_updated_on>2019-08-01 20:09:29</sys_updated_on>
     </sys_script_include>
 </record_update>

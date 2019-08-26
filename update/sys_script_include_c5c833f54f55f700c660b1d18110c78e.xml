@@ -3,7 +3,6 @@
         <access>public</access>
         <active>true</active>
         <api_name>x_8821_code.Analysis</api_name>
-        <caller_access/>
         <client_callable>false</client_callable>
         <description>var t = new x_8821_code.Analysis();&#13;
 try{&#13;

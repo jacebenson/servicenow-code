@@ -30,6 +30,7 @@
         <sys_updated_on>2019-07-26 14:03:57</sys_updated_on>
         <theme/>
         <title>Code</title>
+        <ts_index_group/>
         <url_suffix>code</url_suffix>
     </sp_portal>
     <sys_translated_text action="delete_multiple" query="documentkey=dcd2d49cdbe433007d159235ca9619eb"/>

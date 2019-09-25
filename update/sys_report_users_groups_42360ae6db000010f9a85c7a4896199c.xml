@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_report_users_groups">
+    <sys_report_users_groups action="INSERT_OR_UPDATE">
+        <group_id/>
+        <report_id display_value="Code Search Tables">4a360ae6db000010f9a85c7a4896199b</report_id>
+        <sys_class_name>sys_report_users_groups</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-09-25 15:09:41</sys_created_on>
+        <sys_id>42360ae6db000010f9a85c7a4896199c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4a360ae6db000010f9a85c7a4896199b</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_report_users_groups_42360ae6db000010f9a85c7a4896199c</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-09-25 15:09:41</sys_updated_on>
+        <user_id display_value="Jace Benson">183920cddbc80010f9a85c7a48961954</user_id>
+    </sys_report_users_groups>
+</record_update>

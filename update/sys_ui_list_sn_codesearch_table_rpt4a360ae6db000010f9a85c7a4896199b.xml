@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="sn_codesearch_table" version="2" view="RPT4a360ae6db000010f9a85c7a4896199b">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>table</element>
+            <list_id display_value="sn_codesearch_table" element="NULL" name="sn_codesearch_table" parent="NULL" relationship="NULL" sys_domain="global" view="d6364ee6db000010f9a85c7a48961939">16364ee6db000010f9a85c7a4896193a</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>jacebenson</sys_created_by>
+            <sys_created_on>2019-09-25 15:09:42</sys_created_on>
+            <sys_id>da364ee6db000010f9a85c7a4896193a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>jacebenson</sys_updated_by>
+            <sys_updated_on>2019-09-25 15:09:42</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>search_fields</element>
+            <list_id display_value="sn_codesearch_table" element="NULL" name="sn_codesearch_table" parent="NULL" relationship="NULL" sys_domain="global" view="d6364ee6db000010f9a85c7a48961939">16364ee6db000010f9a85c7a4896193a</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>jacebenson</sys_created_by>
+            <sys_created_on>2019-09-25 15:09:42</sys_created_on>
+            <sys_id>5e364ee6db000010f9a85c7a4896193a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>jacebenson</sys_updated_by>
+            <sys_updated_on>2019-09-25 15:09:42</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>additional_filter</element>
+            <list_id display_value="sn_codesearch_table" element="NULL" name="sn_codesearch_table" parent="NULL" relationship="NULL" sys_domain="global" view="d6364ee6db000010f9a85c7a48961939">16364ee6db000010f9a85c7a4896193a</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>jacebenson</sys_created_by>
+            <sys_created_on>2019-09-25 15:09:42</sys_created_on>
+            <sys_id>de364ee6db000010f9a85c7a4896193a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>jacebenson</sys_updated_by>
+            <sys_updated_on>2019-09-25 15:09:42</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sn_codesearch_table</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>jacebenson</sys_created_by>
+            <sys_created_on>2019-09-25 15:09:42</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>16364ee6db000010f9a85c7a4896193a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>sn_codesearch_table</sys_name>
+            <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+            <sys_update_name>sys_ui_list_sn_codesearch_table_RPT4a360ae6db000010f9a85c7a4896199b</sys_update_name>
+            <sys_updated_by>jacebenson</sys_updated_by>
+            <sys_updated_on>2019-09-25 15:09:42</sys_updated_on>
+            <sys_user/>
+            <view display_value="Rpt4a360ae6db000010f9a85c7a4896199b" name="RPT4a360ae6db000010f9a85c7a4896199b">d6364ee6db000010f9a85c7a48961939</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

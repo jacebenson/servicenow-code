@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="DELETE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>x_8821_code.Analysis2</api_name>
+        <caller_access/>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>Analysis2</name>
+        <script><![CDATA[var Analysis2 = Class.create();
+Analysis2.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+liveCheck: function(){
+		
+        var inputObj = JSON.parse(this.getParameter('sysparm_obj'));
+		/*var tests = (function(){
+			if(inputObj.type === 'server'){
+				return this.serverTests;
+			}else if(inputObj.type === 'client'){
+				return this.clientTests;
+			}else{
+				return [];
+			}
+		})();
+		var errors = [];
+		tests.forEach(function(test){
+			
+			var passes = test.regex.test(inputObj.script);
+			if(passes != test.expect){
+//				errors.push(test.error);
+				
+				errors.push({"test": test,"passed":true});
+			} else {
+				errors.push({"test": test,"passed":true});
+			}
+		});
+		returnObj.errors = errors;
+		*/
+		var returnObj = {
+			from:"server",
+			input: inputObj
+		};
+        return JSON.stringify(returnObj);
+	},
+    type: 'Analysis2'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 16:25:22</sys_created_on>
+        <sys_id>5a076671dbf00010f9a85c7a4896195a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Analysis2</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_script_include_5a076671dbf00010f9a85c7a4896195a</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 16:25:31</sys_updated_on>
+    </sys_script_include>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Code">0f7b73c4dba433007d159235ca96197c</application>
+        <file_path/>
+        <instance_id>6dc85148dbd5ff4091232f17d4961995</instance_id>
+        <instance_name>dev84821</instance_name>
+        <name>sys_script_include_5a076671dbf00010f9a85c7a4896195a</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_script_include"&gt;&lt;sys_script_include action="INSERT_OR_UPDATE"&gt;&lt;access&gt;public&lt;/access&gt;&lt;active&gt;true&lt;/active&gt;&lt;api_name&gt;x_8821_code.Analysis2&lt;/api_name&gt;&lt;caller_access/&gt;&lt;client_callable&gt;true&lt;/client_callable&gt;&lt;description/&gt;&lt;name&gt;Analysis2&lt;/name&gt;&lt;script&gt;&lt;![CDATA[var Analysis2 = Class.create();
+Analysis2.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+liveCheck: function(){
+		
+        var inputObj = JSON.parse(this.getParameter('sysparm_obj'));
+		/*var tests = (function(){
+			if(inputObj.type === 'server'){
+				return this.serverTests;
+			}else if(inputObj.type === 'client'){
+				return this.clientTests;
+			}else{
+				return [];
+			}
+		})();
+		var errors = [];
+		tests.forEach(function(test){
+			
+			var passes = test.regex.test(inputObj.script);
+			if(passes != test.expect){
+//				errors.push(test.error);
+				
+				errors.push({"test": test,"passed":true});
+			} else {
+				errors.push({"test": test,"passed":true});
+			}
+		});
+		returnObj.errors = errors;
+		*/
+		var returnObj = {
+			from:"server",
+			input: inputObj
+		};
+        return JSON.stringify(returnObj);
+	},
+    type: 'Analysis2'
+});]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_include&lt;/sys_class_name&gt;&lt;sys_created_by&gt;jacebenson&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-10-30 16:25:22&lt;/sys_created_on&gt;&lt;sys_id&gt;5a076671dbf00010f9a85c7a4896195a&lt;/sys_id&gt;&lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;&lt;sys_name&gt;Analysis2&lt;/sys_name&gt;&lt;sys_package display_value="Code" source="x_8821_code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_package&gt;&lt;sys_policy&gt;read&lt;/sys_policy&gt;&lt;sys_scope display_value="Code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_include_5a076671dbf00010f9a85c7a4896195a&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;jacebenson&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-10-30 16:25:31&lt;/sys_updated_on&gt;&lt;/sys_script_include&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>916029781</payload_hash>
+        <record_name>Analysis2</record_name>
+        <reverted_from/>
+        <source>f65f56b5dbb00010f9a85c7a489619d3</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 16:25:31</sys_created_on>
+        <sys_id>4a372671dbf00010f9a85c7a48961980</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16e1d7c89e90000001</sys_recorded_at>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 16:25:31</sys_updated_on>
+        <type>Script Include</type>
+        <update_guid>8237267189f000104fb766cb437fc880</update_guid>
+        <update_guid_history>8237267189f000104fb766cb437fc880:916029781,3b276e718cf00010df606871e2f96290:-1205300090</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:06:06</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_include">sys_script_include</sys_db_object>
+        <sys_id>cfcf10dbd22241d88427930a5b1a3d90</sys_id>
+        <sys_metadata>5a076671dbf00010f9a85c7a4896195a</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Analysis2</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_parent/>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_scope_delete display_value="">2f952166b84d4492b77d2b80ba54eeb1</sys_scope_delete>
+        <sys_update_name>sys_script_include_5a076671dbf00010f9a85c7a4896195a</sys_update_name>
+        <sys_update_version display_value="sys_script_include_5a076671dbf00010f9a85c7a4896195a">4a372671dbf00010f9a85c7a48961980</sys_update_version>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:06:06</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

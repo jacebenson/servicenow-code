@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="DELETE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>change_control</field>
+        <global>true</global>
+        <isolate_script>true</isolate_script>
+        <messages/>
+        <name>asdf</name>
+        <order/>
+        <script><![CDATA[function onChange() {
+   //Type appropriate comment here, and begin scriptasdf below
+   var a = '55f77a35db340010f9a85c7a489619cc';//test
+	eval(a);
+}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:39:23</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>55f77a35db340010f9a85c7a489619cc</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>asdf</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_script_client_55f77a35db340010f9a85c7a489619cc</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:48:22</sys_updated_on>
+        <table>cmdb_ci_lb_a10</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Code">0f7b73c4dba433007d159235ca96197c</application>
+        <file_path/>
+        <instance_id>6dc85148dbd5ff4091232f17d4961995</instance_id>
+        <instance_name>dev84821</instance_name>
+        <name>sys_script_client_55f77a35db340010f9a85c7a489619cc</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script_client"&gt;&lt;sys_script_client action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;applies_extended&gt;false&lt;/applies_extended&gt;&lt;condition/&gt;&lt;description/&gt;&lt;field&gt;change_control&lt;/field&gt;&lt;global&gt;true&lt;/global&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;messages/&gt;&lt;name&gt;asdf&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[function onChange() {
+   //Type appropriate comment here, and begin scriptasdf below
+   var a = '55f77a35db340010f9a85c7a489619cc';//test
+	eval(a);
+}]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script_client&lt;/sys_class_name&gt;&lt;sys_created_by&gt;jacebenson&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-10-30 17:39:23&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;55f77a35db340010f9a85c7a489619cc&lt;/sys_id&gt;&lt;sys_mod_count&gt;9&lt;/sys_mod_count&gt;&lt;sys_name&gt;asdf&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Code" source="x_8821_code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_client_55f77a35db340010f9a85c7a489619cc&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;jacebenson&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-10-30 17:48:22&lt;/sys_updated_on&gt;&lt;table&gt;cmdb_ci_lb_a10&lt;/table&gt;&lt;type&gt;onChange&lt;/type&gt;&lt;ui_type&gt;0&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_script_client&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1218318804</payload_hash>
+        <record_name>asdf</record_name>
+        <reverted_from/>
+        <source>f65f56b5dbb00010f9a85c7a489619d3</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:48:22</sys_created_on>
+        <sys_id>e72ab2f5db340010f9a85c7a48961937</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16e1dc862c80000001</sys_recorded_at>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:48:22</sys_updated_on>
+        <type>Client Script</type>
+        <update_guid>232ab2f545340010554b7185e070b037</update_guid>
+        <update_guid_history>232ab2f545340010554b7185e070b037:1218318804,f31af6f5753400101b854d67b7ce4cc5:470530830,14c9beb5593400108b07cf09d24c645b:1735722204,2d89ba756a340010dddda3e1c7eeee68:-731781204,c729be753434001063cb9fd4d1d0c4bb:-1923160047,f319fa753f340010cc251f27092ac45d:-731781204,f1d8ba75ad3400104a27f3073fa15ff5:753248096,cfc87a35313400105ef4cfd45c5ac91b:1834431580,12a8f675d33400104cf5260f1e0df66a:1778717580,082872f1473400108cc9b816c2948ecb:295167923</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:48:30</sys_created_on>
+        <sys_db_object display_value="" name="sys_script_client">sys_script_client</sys_db_object>
+        <sys_id>014ecfbe1687427e80ada23d00c73071</sys_id>
+        <sys_metadata>55f77a35db340010f9a85c7a489619cc</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>asdf</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_parent display_value="CMDB CI Lb A10">5ee60f34db400010f9a85c7a489619eb</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_scope_delete display_value="">2f952166b84d4492b77d2b80ba54eeb1</sys_scope_delete>
+        <sys_update_name>sys_script_client_55f77a35db340010f9a85c7a489619cc</sys_update_name>
+        <sys_update_version display_value="sys_script_client_55f77a35db340010f9a85c7a489619cc">e72ab2f5db340010f9a85c7a48961937</sys_update_version>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:48:30</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

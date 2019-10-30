@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_ui_policy">
+    <sys_ui_policy action="DELETE">
+        <active>true</active>
+        <conditions/>
+        <description/>
+        <global>true</global>
+        <inherit>false</inherit>
+        <isolate_script>true</isolate_script>
+        <model_id/>
+        <model_table/>
+        <on_load>true</on_load>
+        <order>100</order>
+        <reverse_if_false>true</reverse_if_false>
+        <run_scripts>true</run_scripts>
+        <script_false><![CDATA[function onCondition() {
+asdf
+}]]></script_false>
+        <script_true><![CDATA[function onCondition() {
+ var a = '7e4afaf5db340010f9a85c7a489619c';asdf
+}]]></script_true>
+        <set_values/>
+        <short_description>asdf</short_description>
+        <sys_class_name>sys_ui_policy</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:49:11</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>7e4afaf5db340010f9a85c7a489619c0</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>asdf</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_ui_policy_7e4afaf5db340010f9a85c7a489619c0</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:51:43</sys_updated_on>
+        <table/>
+        <ui_type>10</ui_type>
+        <view/>
+    </sys_ui_policy>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Code">0f7b73c4dba433007d159235ca96197c</application>
+        <file_path/>
+        <instance_id>6dc85148dbd5ff4091232f17d4961995</instance_id>
+        <instance_name>dev84821</instance_name>
+        <name>sys_ui_policy_7e4afaf5db340010f9a85c7a489619c0</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_ui_policy"&gt;&lt;sys_ui_policy action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;conditions/&gt;&lt;description/&gt;&lt;global&gt;true&lt;/global&gt;&lt;inherit&gt;false&lt;/inherit&gt;&lt;isolate_script&gt;true&lt;/isolate_script&gt;&lt;model_id/&gt;&lt;model_table/&gt;&lt;on_load&gt;true&lt;/on_load&gt;&lt;order&gt;100&lt;/order&gt;&lt;reverse_if_false&gt;true&lt;/reverse_if_false&gt;&lt;run_scripts&gt;true&lt;/run_scripts&gt;&lt;script_false&gt;&lt;![CDATA[function onCondition() {
+asdf
+}]]&gt;&lt;/script_false&gt;&lt;script_true&gt;&lt;![CDATA[function onCondition() {
+ var a = '7e4afaf5db340010f9a85c7a489619c';asdf
+}]]&gt;&lt;/script_true&gt;&lt;set_values/&gt;&lt;short_description&gt;asdf&lt;/short_description&gt;&lt;sys_class_name&gt;sys_ui_policy&lt;/sys_class_name&gt;&lt;sys_created_by&gt;jacebenson&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-10-30 17:49:11&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;7e4afaf5db340010f9a85c7a489619c0&lt;/sys_id&gt;&lt;sys_mod_count&gt;4&lt;/sys_mod_count&gt;&lt;sys_name&gt;asdf&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Code" source="x_8821_code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_policy_7e4afaf5db340010f9a85c7a489619c0&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;jacebenson&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-10-30 17:51:43&lt;/sys_updated_on&gt;&lt;table/&gt;&lt;ui_type&gt;10&lt;/ui_type&gt;&lt;view/&gt;&lt;/sys_ui_policy&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>-72693836</payload_hash>
+        <record_name>asdf</record_name>
+        <reverted_from/>
+        <source>f65f56b5dbb00010f9a85c7a489619d3</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:51:43</sys_created_on>
+        <sys_id>f4faf639db340010f9a85c7a48961953</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>16e1dcb74950000001</sys_recorded_at>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:51:43</sys_updated_on>
+        <type>UI Policy</type>
+        <update_guid>30faf639f334001045d9d8971ceacd53</update_guid>
+        <update_guid_history>30faf639f334001045d9d8971ceacd53:-72693836,9eeaf6f5cc34001087225b04447d6cbd:371061760,27cabef505340010b0201c41447507a4:-573156406,3a6a3ef58434001021f5c30f8ba60ce1:-505258309,f35a7ef5003400107ad426bbbffcca1e:1498810486</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:52:13</sys_created_on>
+        <sys_db_object display_value="" name="sys_ui_policy">sys_ui_policy</sys_db_object>
+        <sys_id>53c27e84166941788df4c54c34a6a5a4</sys_id>
+        <sys_metadata>7e4afaf5db340010f9a85c7a489619c0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>asdf</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_scope_delete display_value="">2f952166b84d4492b77d2b80ba54eeb1</sys_scope_delete>
+        <sys_update_name>sys_ui_policy_7e4afaf5db340010f9a85c7a489619c0</sys_update_name>
+        <sys_update_version display_value="sys_ui_policy_7e4afaf5db340010f9a85c7a489619c0">f4faf639db340010f9a85c7a48961953</sys_update_version>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:52:13</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

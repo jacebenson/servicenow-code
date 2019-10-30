@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_fix">
+    <sys_script_fix action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <before>false</before>
+        <description/>
+        <flush_cache>false</flush_cache>
+        <name>Code Report</name>
+        <record_for_rollback>false</record_for_rollback>
+        <run_once>true</run_once>
+        <script><![CDATA[var t = new x_8821_code.Analysis();
+try{
+  gs.info(JSON.stringify(t.run(),'','  '));
+}catch(e){
+  gs.info(JSON.stringify(e));
+}//]]></script>
+        <sys_class_name>sys_script_fix</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-10-30 17:29:56</sys_created_on>
+        <sys_id>2ee5b6b1db340010f9a85c7a48961998</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Code Report</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_script_fix_2ee5b6b1db340010f9a85c7a48961998</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-10-30 17:29:56</sys_updated_on>
+        <unloadable>false</unloadable>
+    </sys_script_fix>
+</record_update>

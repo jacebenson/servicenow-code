@@ -4,7 +4,7 @@
         <active>true</active>
         <api_name>x_8821_code.Analysis</api_name>
         <caller_access/>
-        <client_callable>false</client_callable>
+        <client_callable>true</client_callable>
         <description>var t = new x_8821_code.Analysis();&#13;
 try{&#13;
   gs.info(JSON.stringify(t.run(),'','  '));&#13;
@@ -13,7 +13,7 @@ try{&#13;
 }//</description>
         <name>Analysis</name>
         <script><![CDATA[var Analysis = Class.create();
-Analysis.prototype = {
+Analysis.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
 	/*
 Server Side
 - [] Avoid Global BR
@@ -61,8 +61,6 @@ sp_widget,
 sys_ui_page,
 sys_ui_action,
 	*/
-	initialize: function() {
-	},
 	run: function(){
 		var returnObj = {};
 		returnObj.businessRules = this._getBusinessRules();
@@ -86,11 +84,11 @@ sys_ui_action,
 	})(),
 
 	clientTests: [
-		{
+		/*{
 			regex: /^(function on)((.*)\n)+\}$/gm,
-			error: "Not wrapped in function",
+			error: "Not wrapped in function, should be function on*(){}",
 			expect: true
-		},{
+		},*/{
 			regex: /(\s)\$(\.|\()/gm,
 			error: "Do not use Prototype ($) as it's not supported on SP or Mobile",
 			expect: false
@@ -134,7 +132,11 @@ sys_ui_action,
 			regex: /\.getXMLWait/gm,
 			error: "Do not use getXMLWait as it's not supported on SP or Mobile",
 			expect: false
-		}
+		},{
+			regex: /('|"|`)[a-f0-9]{32}('|"|`)/gm,
+			error: "Do not use hard-coded sys_ids",
+			expect: false
+		},
 	],
 	serverTests: [
 		{
@@ -155,6 +157,38 @@ sys_ui_action,
 				expect: false
 			}*/
 	],
+
+	liveCheck: function(){
+
+		var inputObj = JSON.parse(this.getParameter('sysparm_obj'));
+		var returnObj = {
+			from:"server",
+			input: inputObj,
+			errors: []
+		};
+		try{
+			returnObj.serverTest = inputObj.type === 'server';
+			returnObj.clientTest = inputObj.type === 'client';
+			if(returnObj.serverTest){
+				this.serverTests.forEach(function(test){
+					var passes = test.regex.test(inputObj.script);
+					var result = passes == test.expect;
+					returnObj.errors.push({"test": test,"passed":result});
+				});
+
+			}
+			if(returnObj.clientTest){
+				this.clientTests.forEach(function(test){
+					var passes = test.regex.test(inputObj.script);
+					var result = passes == test.expect;
+					returnObj.errors.push({"test": test,"passed":result});
+				});
+			}
+		}catch(err){
+			returnObj.err = err;
+		}
+		return JSON.stringify(returnObj);
+	},
 	_search: function(term){
 		var returnArr = [];
 		var cs = new sn_codesearch.CodeSearch();
@@ -214,9 +248,6 @@ sys_ui_action,
 		- [] Check if script/code does not make use of foreign tables without GlideRecordSecure
 		- [] search code for the use of getResponse() as its a soap method that should be used.
 		*/
-		//if(arguments.length === 1){
-		//	options = arguments[0];
-		//}
 		var returnArr = [];
 		var tests = this.serverTests.concat([{
 			regex: /^(function)((.*)\n)+}$/gm,
@@ -224,12 +255,12 @@ sys_ui_action,
 			expect: true
 		}]);
 		var br = new GlideRecord('sys_script');
-		//if(options){
-		//	br.addQuery('sys_id', options);
-		//} else {
-		br.addQuery('active','true');
-		br.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
-		//}
+		if(arguments[0]){
+			br.addQuery('sys_id', arguments[0]);
+		} else {
+			br.addQuery('active','true');
+			br.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		br.query();
 		while(br.next()){
 			var script = br.getValue('script') || "";
@@ -271,17 +302,14 @@ sys_ui_action,
 		- [] Check if script/code does not make use of foreign tables without GlideRecordSecure
 		- [] search code for the use of getResponse() as its a soap method that should be used.
 		*/
-		//if(arguments.length === 1){
-		//	options = arguments[0];
-		//}
 		var returnArr = [];
 		var si = new GlideRecord('sys_script_include');
-		//if(options){
-		//	si.addQuery('sys_id', options);
-		//} else {
-		si.addQuery('active','true');
-		si.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
-		//}
+		if(arguments[0]){
+			si.addQuery('sys_id', arguments[0]);
+		} else {
+			si.addQuery('active','true');
+			si.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		si.query();
 		while(si.next()){
 			var script = si.getValue('script') || "";
@@ -306,17 +334,14 @@ sys_ui_action,
 	},
 	_getUIPoliciesScripts: function(){
 		var returnArr = [];
-		//if(arguments.length === 1){
-		//	options = arguments[0];
-		//}
 		var up = new GlideRecord('sys_ui_policy');
-		//if(options){
-		//	up.addQuery('sys_id', options);
-		//} else {
-		up.addQuery('active','true');
-		up.addQuery('run_scripts','true');
-		up.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
-		//}
+		if(arguments[0]){
+			up.addQuery('sys_id', arguments[0]);
+		} else {
+			up.addQuery('active','true');
+			up.addQuery('run_scripts','true');
+			up.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		up.query();
 		while(up.next()){
 			var script_true = up.getValue('script_true') || "";
@@ -343,16 +368,13 @@ sys_ui_action,
 	},
 	_getClientScripts: function(){
 		var returnArr = [];
-		//if(arguments.length === 1){
-		//	options = arguments[0];
-		//}
 		var cs = new GlideRecord('sys_script_client');
-		//if(options){
-		//	cs.addQuery('sys_id', options);
-		//} else {
-		cs.addQuery('active','true');
-		cs.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
-		//}
+		if(arguments[0]){
+			cs.addQuery('sys_id', arguments[0]);
+		} else {
+			cs.addQuery('active','true');
+			cs.addQuery('sys_updated_on','>', this.instanceCreateDate);//exclude these as mainy oob
+		}
 		cs.query();
 		while (cs.next()) {   // iterate through records
 			var script = cs.getValue('script') || "";
@@ -376,18 +398,18 @@ sys_ui_action,
 		return returnArr;
 	},
 	type: 'Analysis'
-};]]></script>
+});]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-05-09 22:44:13</sys_created_on>
         <sys_id>c5c833f54f55f700c660b1d18110c78e</sys_id>
-        <sys_mod_count>5</sys_mod_count>
+        <sys_mod_count>36</sys_mod_count>
         <sys_name>Analysis</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sys_script_include_c5c833f54f55f700c660b1d18110c78e</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2019-08-01 20:09:29</sys_updated_on>
+        <sys_updated_on>2019-10-30 17:47:55</sys_updated_on>
     </sys_script_include>
 </record_update>

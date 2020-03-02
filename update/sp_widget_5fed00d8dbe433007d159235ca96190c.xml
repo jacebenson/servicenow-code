@@ -4,116 +4,121 @@
         <client_script><![CDATA[function($scope, $http, $location, $window, $document) {
 	var c = this;
 	//$scope.tables = data.tables;
-	$scope.loading = false;
-	$scope.search = "";
-	$scope.hits = 0;
-	$scope.table = "All Tables"
+	//$scope.data.table = "All Tables"
 	$scope.table_name = ""
+	/*
+	{ 
+	  table: incident,
+		hits: n,
+		results: [
+		  {},
+			{}
+		]
+	}
+	*/
 	$scope.setUrl = function(type) {
 		console.log(type);
 		var updateUrl = "";
-		if (type === "sysid") {
-			updateUrl = "/code+?s+=" + $scope.term;
-		} else if (type === "code") {
+		if (type === "code") {
 			updateUrl = "/code"+"?q"+"=" + $scope.term;
 		} else {
 			updateUrl = "/code"+"?q"+"=" + $scope.term + "&t=" + type;
 		}
-		$window.history.pushState("", $scope.term, updateUrl);
+		$window.location = updateUrl;
 	}
 	$scope.setURLWithTable = function(table){
 		console.log('...');
 		$scope.table_name = table;
 		$scope.setUrl('code');
 	}
-	$scope.codeSearch = function() {
-		$scope.search = "code";
-		$scope.loading = true;
-		if ($scope.term) {
-			$scope.hits = 0;
-			var searchGroup = "x_8821_code.default";
-			var endpoint = "/api/sn_codesearch/code_search/search?";
-			endpoint += "search_group="+searchGroup+"&";
-			endpoint += "term="+$scope.term+"&";
-			endpoint += "search_all_scopes=true";
-			if($scope.table_name != ""){
-				endpoint += "&table=" + $scope.table_name
+	$scope.getWorkflowStuff = function(table, response){
+		var returnObj = {
+			recordType: table.name,
+			tableLabel: table.display,
+			hits: response.result.hits.map(function(hit){})
+		}
+		return returnObj;
+	}
+	$scope.getResults = function(table, index, term){
+
+		var endpoint = "/api/sn_codesearch/code_search/search?";
+		endpoint += "search_group="+$scope.data.searchGroup+"&";
+		endpoint += "term=" + term + "&";
+		endpoint += "search_all_scopes=true";
+		endpoint += "&table=" + table.name
+		console.log(endpoint);
+		$http.get(endpoint).success(function(response) {
+			console.log((index+1), '/', $scope.data.tables.length);
+			var count = index + 1;
+			if(count === $scope.data.tables.length){
+				$scope.data.loading = false;
 			}
-			$http.get(endpoint).success(function(response) {
-				$scope.loading = false;
-				$scope.results = response.result;
-				console.log(response.result);
-				if($scope.table_name === ""){
-					response.result.map(function(table){
-						table.hits = table.hits.map(function(hit){
-							$scope.hits++;
-							//new
+			if(response.result.hits){
+				response.result.table = {};
+				response.result.table.recordType = table.name;
+				response.result.table.tableLabel = table.display;
+				response.result.table.hits = response.result.hits;
+				if(table.name == 'sys_variable_value'){
+					response.result.hits.map(function(hit){
+
+
+						var wfEndpoint = "";
+						wfEndpoint += "/api/now/table/sys_variable_value/" + hit.sysId;
+						wfEndpoint += "?sysparm_display_value=true&sysparm_fields=document_key"
+						$http.get(wfEndpoint).success(function(wfResponse){
 							try{
-								if(hit.className === "sys_variable_value"){
-									var wfEndpoint = "";
-									wfEndpoint += "/api/now/table/sys_variable_value/" + hit.sysId;
-									wfEndpoint += "?sysparm_display_value=true&sysparm_fields=document_key"
-									$http.get(wfEndpoint).success(function(wfResponse){
-										try{
-										console.log({sys_variable_value:wfEndpoint,response: wfResponse.result.document_key})
-										
-										if(typeof wfResponse != ""){
-											var activityEndpoint = wfResponse.result.document_key.link;
-											activityEndpoint += "?sysparm_display_value=true&sysparm_fields=workflow_version,workflow_version.published";
-											$http.get(activityEndpoint).success(function(activityResponse){
-												console.log({wfEndpoint: wfEndpoint,activityResponse:activityResponse});
-												if(activityResponse[0] != '<'){
-													if(activityResponse.result['workflow_version.published'] === "true"){//workflow_version.active
-														hit.name = '\"' + wfResponse.result.document_key.display_value + '\" of ';
-														hit.name += activityResponse.result.workflow_version.display_value;
-														console.log(hit.name + " - "+ activityResponse.result['workflow_version.published']);
-													}else{
-														hit.name = 'inactive';
-													}
-													return hit;
-												}
-											});
+								console.log({sys_variable_value:wfEndpoint,response: wfResponse.result.document_key})
+
+								if(typeof wfResponse != ""){
+									var activityEndpoint = wfResponse.result.document_key.link;
+									activityEndpoint += "?sysparm_display_value=true&sysparm_fields=workflow_version,workflow_version.published";
+									$http.get(activityEndpoint).success(function(activityResponse){
+										console.log({wfEndpoint: wfEndpoint,activityResponse:activityResponse});
+										if(activityResponse[0] != '<'){
+											if(activityResponse.result['workflow_version.published'] === "true"){//workflow_version.active
+												hit.name = '\"' + wfResponse.result.document_key.display_value + '\" of ';
+												hit.name += activityResponse.result.workflow_version.display_value;
+												console.log(hit.name + " - "+ activityResponse.result['workflow_version.published']);
+											}else{
+												hit.name = 'inactive';
+											}
+											return hit;
 										}
-										}catch(e){console.log(e);}
 									});
 								}
-							}catch(err){
-								console.log(hit, err);
-							}
-							return hit;
-							//end new
+							}catch(e){console.log(e);}
 						});
-					})	
+
+
+						$scope.hits++;
+					});
 				} else {
-					if(response.result.hits){
-						response.result.table = {};
-						response.result.table.recordType = $scope.table_name;
-						response.result.table.tableLabel = $scope.table_name;
-						response.result.table.hits = response.result.hits;
-						response.result.hits.map(function(hit){
-							$scope.hits++;
-						});
-					}
+					response.result.hits.map(function(hit){
+						$scope.hits++;
+					});
 				}
-				$scope.results = response.result;
-			});
-		}
-	}
-	$scope.sysIdSearch = function() {
-		$scope.search = "sysid";
-		$scope.loading = true;
+				$scope.data.results.push(response.result.table);
+			}
+		});
+	};
+	$scope.codeSearch = function() {
+		$scope.search = "code";
 		if ($scope.term) {
 			$scope.hits = 0;
-			var searchGroup = "x_8821_code.default";
-			var endpoint = "/api/x_8821_code/query?";
-			endpoint += "sysid=" + $scope.term;//c661e7650f211300fc69cdbce1050e02
-			$http.get(endpoint).success(function(response) {
-				$scope.loading = false;
-				$scope.results = response.result;
-				//console.log($scope.results);
-				$scope.results.map(function(hits){
-					$scope.hits++;
-				})
+			console.log($scope.data.tables);
+			$scope.data.tables.forEach(function(aTable, index){
+				if($scope.data.table == aTable.name){
+					console.log('one talbe', aTable);
+				} else {
+					console.log('query', aTable);
+					if(aTable.name!=""){
+						$scope.getResults(aTable, index, $scope.term);
+					}
+					if(index-1 === $scope.data.tables.length){
+						$scope.data.loading = false;
+						$scope.data.aTableindex = index;
+					}
+				}
 			});
 		}
 	}
@@ -135,12 +140,6 @@
 				$scope.table = $location.search().t
 			}
 			$scope.codeSearch();
-		}
-	}
-	if($location.search().s){
-		$scope.term = $location.search().s;
-		if($scope.term.length>0){
-			$scope.sysIdSearch();
 		}
 	}
 }]]></client_script>
@@ -167,8 +166,14 @@
 		display: '',
 		calculated: 'All Tables'
 	}];
+	data.results = [];
+	data.loading = true;
+	data.searchGroup = 'x_8821_code.default';
+	data.table = $sp.getParameter('t') || null;
+	data.term = $sp.getParameter('q') || null;
 	var tables = new GlideRecord('sn_codesearch_table');
-	tables.addQuery('search_group','9a44f352d7120200b6bddb0c82520376');
+	//api/sn_codesearch/code_search/search?search_group=x_8821_code.default&term=KBWorkflow&search_all_scopes=true&table=sys_variable_value
+	tables.addEncodedQuery('search_group.name=x_8821_code.default');
 	tables.orderBy('table');
 	tables.query();
 	while(tables.next()){
@@ -192,14 +197,14 @@
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-03-28 06:58:01</sys_created_on>
         <sys_id>5fed00d8dbe433007d159235ca96190c</sys_id>
-        <sys_mod_count>32</sys_mod_count>
+        <sys_mod_count>88</sys_mod_count>
         <sys_name>code-search</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sp_widget_5fed00d8dbe433007d159235ca96190c</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2019-04-09 03:01:53</sys_updated_on>
+        <sys_updated_on>2020-03-02 22:51:14</sys_updated_on>
         <template><![CDATA[<div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">${Code Search}</h3>
@@ -210,7 +215,7 @@
           <!-- Form Name -->
           <!--<legend>Form Name</legend>-->
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-10">
               <!-- Search input-->
               <div class="form-group">
                 <div class="col-md-12">
@@ -239,12 +244,12 @@
                          ng-model=\"term\"
                          >-->
                   <p class="help-block">
-                    Enter code snippet or sysid and search with appropiate button.  If you search for sysid you will initially get a bunch of "scope" messages, this is expected.
+                    Enter code snippet and search with appropiate button.
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
               <!-- Button (Double) -->
               <div class="form-group">
                 <!--<label class=\"col-md-4 control-label\" for=\"button1id\">Double Button</label>-->
@@ -256,11 +261,6 @@
                           class="btn btn-success"
                           ng-click="setUrl('code')"
                           ><i class="glyphicon glyphicon-search\" aria-hidden="true"></i> Code</button>
-                  <button id="button2id" 
-                          name="button2id" 
-                          class="btn btn-danger"
-                          ng-click="setUrl('sysid')"
-                          ><i class="glyphicon glyphicon-search" aria-hidden="true"></i> Sysid</button>
                 </div>
               </div>
             </div>
@@ -270,48 +270,35 @@
   
     </div>
   </div>
-  <div class="panel panel-default" ng-if="loading">
+  <div class="panel panel-default" ng-if="data.loading">
     <div class="text-center">
       <h1 ng-if="search==='code'">
         Searching code...  
       </h1>
-      <h1 ng-if="search==='sysid'">
-        Searching for record...  
-      </h1>
       <div class="fa fa-spinner fa-spin" id="spinner"></div>
     </div>
   </div>
-  <div class="panel panel-default" ng-if="results && !loading">
+  <div class="panel panel-default" ng-if="data.results && !data.loading">
     <h1 class="text-center">
       <div ng-if="hits>0 && search === 'code'">
-        {{hits}} Code Matches
-      </div>
-      <div ng-if="hits>0 && search === 'sysid'">
-        Found
+        {{hits}} Matches
       </div>
       <div ng-if="hits === 0">
         No Matches Found
       </div>
     </h1>
     <div class="panel-body">
-      <div ng-if="search==='sysid'" ng-repeat="hits in results">
-        <div class="row container" id="{{hits.sysid}}">
-          <p>
-            <a href="{{hits.url}}">{{hits.displayValue}} on {{hits.table}}.</a>
-          </p>
-        </div>
-      </div>
-      <div ng-if="search!=='sysid'" ng-repeat="table in results">
+      <div ng-if="search!=='sysid'" ng-repeat="table in data.results">
         <div class="row container" ng-if="table.hits.length>0">
           <p>
             <a href="#{{table.recordType}}">{{table.recordType}} has {{table.hits.length}} matching records.</a>
           </p>
         </div>
       </div>
-      <div ng-repeat="table in results">
+      <div ng-repeat="table in data.results">
         <div class="row" id="{{table.recordType}}" ng-if="table.hits.length>0">
           <h1 class="text-center">
-            {{table.tableLabel}}
+            {{table.tableLabel}} <span class="text-muted">[{{table.recordType}}]</span>
           </h1>
         </div>
         <div class="row" ng-if="table.hits.length>0">

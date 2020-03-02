@@ -47,7 +47,7 @@
         <template/>
         <when>before</when>
     </sys_script>
-    <sys_translated_text action="delete_multiple" query="documentkey=540ba675dbf00010f9a85c7a4896198d"/>
+    <sys_translated_text action="DELETE" query="documentkey=540ba675dbf00010f9a85c7a4896198d"/>
     <sys_update_version action="INSERT_OR_UPDATE">
         <action>DELETE</action>
         <application display_value="Code">0f7b73c4dba433007d159235ca96197c</application>

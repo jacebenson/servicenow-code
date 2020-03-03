@@ -17,7 +17,7 @@
 	}
 	*/
 	$scope.setUrl = function(type) {
-		console.log(type);
+		$scope.loading = true;
 		var updateUrl = "";
 		if (type === "code") {
 			updateUrl = "/code"+"?q"+"=" + $scope.term;
@@ -167,10 +167,16 @@
 		calculated: 'All Tables'
 	}];
 	data.results = [];
-	data.loading = true;
+	data.loading = false;
 	data.searchGroup = 'x_8821_code.default';
 	data.table = $sp.getParameter('t') || null;
 	data.term = $sp.getParameter('q') || null;
+	//sys_app.do?sys_id=0f7b73c4dba433007d159235ca96197c
+	var app = new GlideRecord('sys_app');
+	if(app.get('0f7b73c4dba433007d159235ca96197c')){
+		data.version = app.getValue('version');
+	}
+	data.feedback = 'https://github.com/jacebenson/servicenow-code/issues';
 	var tables = new GlideRecord('sn_codesearch_table');
 	//api/sn_codesearch/code_search/search?search_group=x_8821_code.default&term=KBWorkflow&search_all_scopes=true&table=sys_variable_value
 	tables.addEncodedQuery('search_group.name=x_8821_code.default');
@@ -197,124 +203,119 @@
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-03-28 06:58:01</sys_created_on>
         <sys_id>5fed00d8dbe433007d159235ca96190c</sys_id>
-        <sys_mod_count>88</sys_mod_count>
+        <sys_mod_count>122</sys_mod_count>
         <sys_name>code-search</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sp_widget_5fed00d8dbe433007d159235ca96190c</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2020-03-02 22:51:14</sys_updated_on>
+        <sys_updated_on>2020-03-03 06:28:33</sys_updated_on>
         <template><![CDATA[<div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">${Code Search}</h3>
-    </div>
-    <div class="panel-body col-12">
-      <form class="form-horizontal">
-        <fieldset>
-          <!-- Form Name -->
-          <!--<legend>Form Name</legend>-->
-          <div class="row">
-            <div class="col-sm-10">
-              <!-- Search input-->
-              <div class="form-group">
-                <div class="col-md-12">
-                  <div class="input-group">
-                    <input id="searchinput" name="searchinput" class="form-control" placeholder="GlideDateTime" type="text"
-                           ng-model="term">
-                    <div class="input-group-btn">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <span data-value="" id="table" ng-bind="table"></span>
-                        <span class="caret"></span>
-                      </button>
-                      <ul ng-if="data.tables.length>0" class="dropdown-menu pull-right">
-                        <li ng-repeat="table in data.tables">
-                          <button class="btn btn-link" ng-click="setUrl(table.name)">
-                              {{table.calculated}}
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <!--<input id=\"searchinput\" 
-                         name=\"searchinput\" 
-                         placeholder=\"GlideDateTime\" 
-                         class=\"form-control input-md\" 
-                         type=\"search\"
-                         ng-model=\"term\"
-                         >-->
-                  <p class="help-block">
-                    Enter code snippet and search with appropiate button.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2">
-              <!-- Button (Double) -->
-              <div class="form-group">
-                <!--<label class=\"col-md-4 control-label\" for=\"button1id\">Double Button</label>-->
-                <div class="col-md-4">
-                </div>
-                <div class="col-md-8">
-                  <button id="button1id" 
-                          name="button1id" 
-                          class="btn btn-success"
-                          ng-click="setUrl('code')"
-                          ><i class="glyphicon glyphicon-search\" aria-hidden="true"></i> Code</button>
-                </div>
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      ${Code Search}
+      <span class="small">{{data.version}}</span>
+    </h3>
+  </div>
+  <div class="panel-body col-12">
+    <form class="form-horizontal">
+      <fieldset>
+        <!-- Form Name -->
+        <!--<legend>Form Name</legend>-->
+        <div class="row">
+          <div class="col-sm-10">
+            <!-- Search input-->
+
+            <div class="form-group">
+              <!--<label class="col-md-4 control-label" for="textinput">Text Input</label>  -->
+              <div class="col-md-12">
+                <input id="searchinput" 
+                       name="searchinput" 
+                       type="text" 
+                       placeholder="GlideDateTime" 
+                       class="form-control input-md"
+                       ng-model="term" />
               </div>
             </div>
           </div>
-        </fieldset>
-      </form>
-  
-    </div>
-  </div>
-  <div class="panel panel-default" ng-if="data.loading">
-    <div class="text-center">
-      <h1 ng-if="search==='code'">
-        Searching code...  
-      </h1>
-      <div class="fa fa-spinner fa-spin" id="spinner"></div>
-    </div>
-  </div>
-  <div class="panel panel-default" ng-if="data.results && !data.loading">
-    <h1 class="text-center">
-      <div ng-if="hits>0 && search === 'code'">
-        {{hits}} Matches
+          <div class="col-sm-2">
+            <!-- Button -->
+            <div class="form-group">
+              <!--<label class=\"col-md-4 control-label\" for=\"button1id\">Double Button</label>-->
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-8">
+                <button id="button1id" 
+                        name="button1id" 
+                        class="btn btn-success"
+                        ng-click="setUrl('code')"
+                        ><i class="glyphicon glyphicon-search\" aria-hidden="true"></i> Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="row">
+        <div class="text-center">
+          <span class="small">
+            Version: {{data.version}}
+          </span>
+          -
+          <span class="small">
+            <a ng-href="{{data.feedback}}">Feedback</a>
+          </span>
+        </div>
+
       </div>
-      <div ng-if="hits === 0">
-        No Matches Found
-      </div>
+    </form>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="data.loading">
+  <div class="text-center">
+    <h1 ng-if="search==='code'">
+      Searching code...  
     </h1>
-    <div class="panel-body">
-      <div ng-if="search!=='sysid'" ng-repeat="table in data.results">
-        <div class="row container" ng-if="table.hits.length>0">
-          <p>
-            <a href="#{{table.recordType}}">{{table.recordType}} has {{table.hits.length}} matching records.</a>
-          </p>
-        </div>
+    <div class="fa fa-spinner fa-spin" id="spinner"></div>
+  </div>
+</div>
+<div class="panel panel-default" ng-if="data.results.length>0 && !data.loading">
+  <h1 class="text-center">
+    <div ng-if="hits>0 && search === 'code'">
+      {{hits}} Matches
+    </div>
+    <div ng-if="hits === 0">
+      No Matches Found
+    </div>
+  </h1>
+  <div class="panel-body">
+    <div ng-if="search!=='sysid'" ng-repeat="table in data.results">
+      <div class="row container" ng-if="table.hits.length>0">
+        <p>
+          <a href="#{{table.recordType}}">{{table.recordType}} has {{table.hits.length}} matching records.</a>
+        </p>
       </div>
-      <div ng-repeat="table in data.results">
-        <div class="row" id="{{table.recordType}}" ng-if="table.hits.length>0">
-          <h1 class="text-center">
-            {{table.tableLabel}} <span class="text-muted">[{{table.recordType}}]</span>
-          </h1>
-        </div>
-        <div class="row" ng-if="table.hits.length>0">
-          <div class="row container" ng-repeat="hit in table.hits">
-            <div class="col-sm-2">
-              <a ng-href="{{hit.className}}.do?sys_id={{hit.sysId}}" target="_blank">{{hit.name}}</a>
-            </div>
-            <div class="col-sm-10">
-              <div ng-repeat="match in hit.matches"> 
-                <pre><code class="javascript"><span ng-repeat="context in match.lineMatches"><span>Line {{context.line}}</span>: <span>{{context.context}}</span><br/></span></code></pre> 
-              </div>
+    </div>
+    <div ng-repeat="table in data.results">
+      <div class="row" id="{{table.recordType}}" ng-if="table.hits.length>0">
+        <h1 class="text-center">
+          {{table.tableLabel}} <span class="text-muted">[{{table.recordType}}]</span>
+        </h1>
+      </div>
+      <div class="row" ng-if="table.hits.length>0">
+        <div class="row container" ng-repeat="hit in table.hits">
+          <div class="col-sm-2">
+            <a ng-href="{{hit.className}}.do?sys_id={{hit.sysId}}" target="_blank">{{hit.name}}</a>
+          </div>
+          <div class="col-sm-10">
+            <div ng-repeat="match in hit.matches"> 
+              <pre><code class="javascript"><span ng-repeat="context in match.lineMatches"><span>Line {{context.line}}</span>: <span>{{context.context}}</span><br/></span></code></pre> 
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>]]></template>
+  </div>
+</div>]]></template>
     </sp_widget>
 </record_update>

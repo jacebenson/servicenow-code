@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition">
+    <sys_ws_definition action="DELETE">
+        <active>true</active>
+        <base_uri>/api/x_8821_code/query</base_uri>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_version>No active default version</default_version>
+        <doc_link/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <is_versioned>false</is_versioned>
+        <name>query</name>
+        <namespace>x_8821_code</namespace>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <service_id>query</service_id>
+        <short_description/>
+        <sys_class_name>sys_ws_definition</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-03-28 07:35:52</sys_created_on>
+        <sys_id>8e761090db2833007d159235ca9619bb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>query</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_ws_definition_8e761090db2833007d159235ca9619bb</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-03-28 07:35:52</sys_updated_on>
+    </sys_ws_definition>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Code">0f7b73c4dba433007d159235ca96197c</application>
+        <file_path/>
+        <instance_id>8f6019ec6fcb02004c327b2f5d3ee45b</instance_id>
+        <instance_name>dev16718</instance_name>
+        <name>sys_ws_definition_8e761090db2833007d159235ca9619bb</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition">
+    <sys_ws_definition action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <base_uri>/api/x_8821_code/query</base_uri>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_version>No active default version</default_version>
+        <doc_link/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <is_versioned>false</is_versioned>
+        <name>query</name>
+        <namespace>x_8821_code</namespace>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <service_id>query</service_id>
+        <short_description/>
+        <sys_class_name>sys_ws_definition</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-03-28 07:35:52</sys_created_on>
+        <sys_id>8e761090db2833007d159235ca9619bb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>query</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_ws_definition_8e761090db2833007d159235ca9619bb</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-03-28 07:35:52</sys_updated_on>
+    </sys_ws_definition>
+</record_update>]]></payload>
+        <payload_hash>-280168519</payload_hash>
+        <record_name>query</record_name>
+        <reverted_from/>
+        <source>a82256422f978410bd54d5f62799b68a</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2020-03-03 16:09:04</sys_created_on>
+        <sys_id>bf225a422f978410bd54d5f62799b643</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>170a12865ea0000001</sys_recorded_at>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2020-03-03 16:09:04</sys_updated_on>
+        <type>Scripted REST API</type>
+        <update_guid>3f225a42da97841088869bd4813eb243</update_guid>
+        <update_guid_history>3f225a42da97841088869bd4813eb243:0,39229642b997841048a91a6bdad97bc3:-2081591781,8c30ca7901db4410bc3ae7c4ceb4f64b:0,46204a7918db4410c86d72ab24f25226:-2081591781,5b9afee52f8f88103b7eda27b1650996:-280168519</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2020-03-04 05:43:28</sys_created_on>
+        <sys_db_object display_value="" name="sys_ws_definition">sys_ws_definition</sys_db_object>
+        <sys_id>818d619305d644988102657eb1a63884</sys_id>
+        <sys_metadata>8e761090db2833007d159235ca9619bb</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>query</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_scope_delete display_value="">2f952166b84d4492b77d2b80ba54eeb1</sys_scope_delete>
+        <sys_update_name>sys_ws_definition_8e761090db2833007d159235ca9619bb</sys_update_name>
+        <sys_update_version display_value="sys_ws_definition_8e761090db2833007d159235ca9619bb">bf225a422f978410bd54d5f62799b643</sys_update_version>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2020-03-04 05:43:28</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

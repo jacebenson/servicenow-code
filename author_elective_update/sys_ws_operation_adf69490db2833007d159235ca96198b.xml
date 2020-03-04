@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_operation">
+    <sys_ws_operation action="DELETE">
+        <active>true</active>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_operation_uri/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <http_method>GET</http_method>
+        <name>search</name>
+        <operation_script><![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	var queryParams = request.queryParams; 
+	var sysid = queryParams.sysid;
+	var ss = new x_8821_code.Utils();
+	var arr = ss.search(sysid);	
+	response.setContentType('application/json');
+	response.setBody(arr);
+})(request, response);]]></operation_script>
+        <operation_uri>/api/x_8821_code/query</operation_uri>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <relative_path>/</relative_path>
+        <request_example/>
+        <requires_acl_authorization>true</requires_acl_authorization>
+        <requires_authentication>true</requires_authentication>
+        <requires_snc_internal_role>true</requires_snc_internal_role>
+        <short_description/>
+        <sys_class_name>sys_ws_operation</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2019-03-28 07:38:29</sys_created_on>
+        <sys_id>adf69490db2833007d159235ca96198b</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>search</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_update_name>sys_ws_operation_adf69490db2833007d159235ca96198b</sys_update_name>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2019-03-28 07:49:10</sys_updated_on>
+        <web_service_definition display_value="query">8e761090db2833007d159235ca9619bb</web_service_definition>
+        <web_service_version/>
+    </sys_ws_operation>
+<sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Code">0f7b73c4dba433007d159235ca96197c</application>
+        <file_path/>
+        <instance_id>8f6019ec6fcb02004c327b2f5d3ee45b</instance_id>
+        <instance_name>dev16718</instance_name>
+        <name>sys_ws_operation_adf69490db2833007d159235ca96198b</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sys_ws_operation"&gt;
+    &lt;sys_ws_operation action="INSERT_OR_UPDATE"&gt;
+        &lt;active&gt;true&lt;/active&gt;
+        &lt;consumes&gt;application/json,application/xml,text/xml&lt;/consumes&gt;
+        &lt;consumes_customized&gt;false&lt;/consumes_customized&gt;
+        &lt;default_operation_uri/&gt;
+        &lt;enforce_acl&gt;cf9d01d3e73003009d6247e603f6a990&lt;/enforce_acl&gt;
+        &lt;http_method&gt;GET&lt;/http_method&gt;
+        &lt;name&gt;search&lt;/name&gt;
+        &lt;operation_script&gt;&lt;![CDATA[(function process(/*RESTAPIRequest*/ request, /*RESTAPIResponse*/ response) {
+	var queryParams = request.queryParams; 
+	var sysid = queryParams.sysid;
+	var ss = new x_8821_code.Utils();
+	var arr = ss.search(sysid);	
+	response.setContentType('application/json');
+	response.setBody(arr);
+})(request, response);]]&gt;&lt;/operation_script&gt;
+        &lt;operation_uri&gt;/api/x_8821_code/query&lt;/operation_uri&gt;
+        &lt;produces&gt;application/json,application/xml,text/xml&lt;/produces&gt;
+        &lt;produces_customized&gt;false&lt;/produces_customized&gt;
+        &lt;relative_path&gt;/&lt;/relative_path&gt;
+        &lt;request_example/&gt;
+        &lt;requires_acl_authorization&gt;true&lt;/requires_acl_authorization&gt;
+        &lt;requires_authentication&gt;true&lt;/requires_authentication&gt;
+        &lt;requires_snc_internal_role&gt;true&lt;/requires_snc_internal_role&gt;
+        &lt;short_description/&gt;
+        &lt;sys_class_name&gt;sys_ws_operation&lt;/sys_class_name&gt;
+        &lt;sys_created_by&gt;jacebenson&lt;/sys_created_by&gt;
+        &lt;sys_created_on&gt;2019-03-28 07:38:29&lt;/sys_created_on&gt;
+        &lt;sys_id&gt;adf69490db2833007d159235ca96198b&lt;/sys_id&gt;
+        &lt;sys_mod_count&gt;1&lt;/sys_mod_count&gt;
+        &lt;sys_name&gt;search&lt;/sys_name&gt;
+        &lt;sys_package display_value="Code" source="x_8821_code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_package&gt;
+        &lt;sys_policy/&gt;
+        &lt;sys_scope display_value="Code"&gt;0f7b73c4dba433007d159235ca96197c&lt;/sys_scope&gt;
+        &lt;sys_update_name&gt;sys_ws_operation_adf69490db2833007d159235ca96198b&lt;/sys_update_name&gt;
+        &lt;sys_updated_by&gt;jacebenson&lt;/sys_updated_by&gt;
+        &lt;sys_updated_on&gt;2019-03-28 07:49:10&lt;/sys_updated_on&gt;
+        &lt;web_service_definition display_value="query"&gt;8e761090db2833007d159235ca9619bb&lt;/web_service_definition&gt;
+        &lt;web_service_version/&gt;
+    &lt;/sys_ws_operation&gt;
+&lt;/record_update&gt;</payload>
+        <payload_hash>-974197924</payload_hash>
+        <record_name>search</record_name>
+        <reverted_from/>
+        <source>a82256422f978410bd54d5f62799b68a</source>
+        <source_table>sys_upgrade_history</source_table>
+        <state>previous</state>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2020-03-03 16:09:04</sys_created_on>
+        <sys_id>73225a422f978410bd54d5f62799b647</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>170a12866170000001</sys_recorded_at>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2020-03-03 16:09:04</sys_updated_on>
+        <type>Scripted REST Resource</type>
+        <update_guid>ff225a4249978410549955fc602fe246</update_guid>
+        <update_guid_history>ff225a4249978410549955fc602fe246:0,f9229642a697841009d9999ca438bfc1:-1891477994,4030ca79eedb4410194a23e97743524f:0,86204a791cdb4410414dc5a387e63322:-1891477994,1f9afee57b8f8810bfce767ec4d4d199:-974197924</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>jacebenson</sys_created_by>
+        <sys_created_on>2020-03-04 05:43:10</sys_created_on>
+        <sys_db_object display_value="" name="sys_ws_operation">sys_ws_operation</sys_db_object>
+        <sys_id>01964f3633d9423680098b9dbd59e8f1</sys_id>
+        <sys_metadata>adf69490db2833007d159235ca96198b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>search</sys_name>
+        <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
+        <sys_scope_delete display_value="">2f952166b84d4492b77d2b80ba54eeb1</sys_scope_delete>
+        <sys_update_name>sys_ws_operation_adf69490db2833007d159235ca96198b</sys_update_name>
+        <sys_update_version display_value="sys_ws_operation_adf69490db2833007d159235ca96198b">73225a422f978410bd54d5f62799b647</sys_update_version>
+        <sys_updated_by>jacebenson</sys_updated_by>
+        <sys_updated_on>2020-03-04 05:43:10</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>

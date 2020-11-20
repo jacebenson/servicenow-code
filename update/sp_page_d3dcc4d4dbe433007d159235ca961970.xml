@@ -6,8 +6,10 @@
         <dynamic_title_structure/>
         <id>code_search</id>
         <internal>false</internal>
+        <omit_watcher>false</omit_watcher>
         <public>false</public>
         <roles>admin</roles>
+        <seo_script/>
         <short_description/>
         <sys_class_name>sp_page</sys_class_name>
         <sys_created_by>jacebenson</sys_created_by>
@@ -22,6 +24,7 @@
         <sys_updated_by>jacebenson</sys_updated_by>
         <sys_updated_on>2019-03-28 07:43:21</sys_updated_on>
         <title>Code Search</title>
+        <use_seo_script>false</use_seo_script>
     </sp_page>
     <sys_translated_text action="delete_multiple" query="documentkey=d3dcc4d4dbe433007d159235ca961970"/>
 </record_update>

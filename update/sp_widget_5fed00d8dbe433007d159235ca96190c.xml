@@ -5,6 +5,30 @@
 	var c = this;
 	//$scope.tables = data.tables;
 	//$scope.data.table = "All Tables"
+	function get_browser() {
+    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+    if(/trident/i.test(M[1])){
+        tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
+        return {name:'IE',version:(tem[1]||'')};
+        }   
+    if(M[1]==='Chrome'){
+        tem=ua.match(/\bOPR|Edge\/(\d+)/)
+        if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+        }   
+    M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+    return {
+      name: M[0],
+      version: M[1]
+    };
+ }
+
+var browser=get_browser(); // browser.name = 'Chrome'
+                           // browser.version = '40'
+
+console.log(browser);
+	$scope.data.feedback += 'Browser: `' + browser.name + ' ' + browser.version + '`';
+	//console.log($scope.data.feedback);
 	$scope.table_name = ""
 	/*
 	{ 
@@ -176,7 +200,19 @@
 	if(app.get('0f7b73c4dba433007d159235ca96197c')){
 		data.version = app.getValue('version');
 	}
-	data.feedback = 'https://github.com/jacebenson/servicenow-code/issues';
+	data.feedbackBody = function(val){
+		data.feedback += encodeURIComponent(val) + '%0A';
+	}
+	data.feedback = 'https://github.com/jacebenson/servicenow-code/issues/new/?body=';
+	data.feedbackBody('#### The problem');
+	data.feedbackBody('');
+	data.feedbackBody('A clear and concised description of the issue.');
+	data.feedbackBody('');
+	data.feedbackBody('#### Envrionment');
+	data.feedbackBody('');
+	data.feedbackBody('code-search Version: `' + data.version + '`');
+	data.feedbackBody('Buildtag: `' + gs.getProperty('glide.buildtag.last')+'`')
+	//data.feedback += data.feedbackBody.join('%0A');
 	var tables = new GlideRecord('sn_codesearch_table');
 	//api/sn_codesearch/code_search/search?search_group=x_8821_code.default&term=KBWorkflow&search_all_scopes=true&table=sys_variable_value
 	tables.addEncodedQuery('search_group.name=x_8821_code.default');
@@ -203,14 +239,14 @@
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-03-28 06:58:01</sys_created_on>
         <sys_id>5fed00d8dbe433007d159235ca96190c</sys_id>
-        <sys_mod_count>123</sys_mod_count>
+        <sys_mod_count>139</sys_mod_count>
         <sys_name>code-search</sys_name>
         <sys_package display_value="Code" source="x_8821_code">0f7b73c4dba433007d159235ca96197c</sys_package>
         <sys_policy/>
         <sys_scope display_value="Code">0f7b73c4dba433007d159235ca96197c</sys_scope>
         <sys_update_name>sp_widget_5fed00d8dbe433007d159235ca96190c</sys_update_name>
         <sys_updated_by>jacebenson</sys_updated_by>
-        <sys_updated_on>2020-03-04 05:42:08</sys_updated_on>
+        <sys_updated_on>2020-11-20 16:33:40</sys_updated_on>
         <template><![CDATA[<div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title">

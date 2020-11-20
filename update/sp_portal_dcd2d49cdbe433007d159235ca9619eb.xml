@@ -2,6 +2,7 @@
     <sp_portal action="INSERT_OR_UPDATE">
         <css_variables/>
         <default>false</default>
+        <hide_portal_name>false</hide_portal_name>
         <homepage display_value="code_search">d3dcc4d4dbe433007d159235ca961970</homepage>
         <icon/>
         <kb_knowledge_base/>
@@ -15,7 +16,6 @@
         <sc_category_page/>
         <sp_chat_queue/>
         <sp_rectangle_menu/>
-        <sqanda_knowledge_base/>
         <sys_class_name>sp_portal</sys_class_name>
         <sys_created_by>jacebenson</sys_created_by>
         <sys_created_on>2019-03-28 07:20:08</sys_created_on>
